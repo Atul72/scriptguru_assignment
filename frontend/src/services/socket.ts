@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
+import { BACKEND_URL } from "./backened-url";
 
-const socket = io("https://scriptguru-assignment-1.onrender.com", {
+const socket = io(BACKEND_URL, {
   transports: ["websocket"],
 });
 

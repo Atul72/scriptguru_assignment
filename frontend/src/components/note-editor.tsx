@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { BACKEND_URL } from "@/services/backened-url";
 
 export const NoteEditor = () => {
   const { id } = useParams();
@@ -23,13 +24,10 @@ export const NoteEditor = () => {
 
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
-        axios.put(
-          `https://scriptguru-assignment-1.onrender.com/api/v1/notes/${id}`,
-          {
-            content: newContent,
-            updatedAt: new Date(),
-          }
-        );
+        axios.put(`${BACKEND_URL}/api/v1/notes/${id}`, {
+          content: newContent,
+          updatedAt: new Date(),
+        });
         setLastUpdated(new Date());
       }, 5000);
     },
@@ -37,9 +35,7 @@ export const NoteEditor = () => {
 
   useEffect(() => {
     const fetchNote = async () => {
-      const res = await axios.get(
-        `https://scriptguru-assignment-1.onrender.com/api/v1/notes/${id}`
-      );
+      const res = await axios.get(`${BACKEND_URL}/api/v1/notes/${id}`);
       if (editor) {
         editor.commands.setContent(res.data.note.content || "");
       }
@@ -82,13 +78,10 @@ export const NoteEditor = () => {
 
   const handleManualSave = async () => {
     try {
-      const res = await axios.put(
-        `https://scriptguru-assignment-1.onrender.com/api/v1/notes/${id}`,
-        {
-          content: editor?.getHTML() || "",
-          updatedAt: new Date(),
-        }
-      );
+      const res = await axios.put(`${BACKEND_URL}/api/v1/notes/${id}`, {
+        content: editor?.getHTML() || "",
+        updatedAt: new Date(),
+      });
       if (editor) {
         editor.commands.setContent(res.data.note.content || "");
       }

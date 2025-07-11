@@ -3,6 +3,7 @@ import { Textarea } from "@/components/ui/textarea";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "@/services/backened-url";
 
 export const EditForm = () => {
   const [search, setSearch] = useState("");
@@ -14,7 +15,7 @@ export const EditForm = () => {
 
     const delayDebounce = setTimeout(async () => {
       const response = await axios.get(
-        `https://scriptguru-assignment-1.onrender.com/api/v1/notes/search?query=${search}`
+        `${BACKEND_URL}/api/v1/notes/search?query=${search}`
       );
       setResults(response.data);
     }, 500);

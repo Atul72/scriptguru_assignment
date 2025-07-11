@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "@/services/backened-url";
 
 export const TitleForm = () => {
   const [title, setTitle] = useState("");
@@ -14,7 +15,7 @@ export const TitleForm = () => {
     try {
       setIsCreating(true);
       const response = await axios.post(
-        "https://scriptguru-assignment-1.onrender.com/api/v1/notes/",
+        `${BACKEND_URL}/api/v1/notes/`,
         {
           title,
           content: "",
