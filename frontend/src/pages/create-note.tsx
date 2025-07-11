@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Modal } from "@/components/modal";
+import { TitleModal } from "@/components/title-modal";
+import { EditModal } from "@/components/edit-modal";
 
 export default function Home() {
   return (
@@ -16,14 +17,16 @@ export default function Home() {
             A collaborative note-taking app
           </p>
           <div className="flex flex-col gap-4">
-            <Modal>
+            <TitleModal>
               <Button variant="outline" size="lg" className=" cursor-pointer">
                 Create Note
               </Button>
-            </Modal>
-            <Button variant="outline" size="lg">
-              Edit Note
-            </Button>
+            </TitleModal>
+            <EditModal>
+              <Button variant="outline" size="lg">
+                Edit Note
+              </Button>
+            </EditModal>
           </div>
         </div>
       </main>
