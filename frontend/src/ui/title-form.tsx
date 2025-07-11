@@ -14,7 +14,7 @@ export const TitleForm = () => {
     try {
       setIsCreating(true);
       const response = await axios.post(
-        "http://127.0.0.1:3000/api/v1/notes/",
+        "https://scriptguru-assignment-1.onrender.com/api/v1/notes/",
         {
           title,
           content: "",

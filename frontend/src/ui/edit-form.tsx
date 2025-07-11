@@ -14,7 +14,7 @@ export const EditForm = () => {
 
     const delayDebounce = setTimeout(async () => {
       const response = await axios.get(
-        `http://127.0.0.1:3000/api/v1/notes/search?query=${search}`
+        `https://scriptguru-assignment-1.onrender.com/api/v1/notes/search?query=${search}`
       );
       setResults(response.data);
     }, 500);

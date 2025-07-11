@@ -23,10 +23,13 @@ export const NoteEditor = () => {
 
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
-        axios.put(`http://127.0.0.1:3000/api/v1/notes/${id}`, {
-          content: newContent,
-          updatedAt: new Date(),
-        });
+        axios.put(
+          `https://scriptguru-assignment-1.onrender.com/api/v1/notes/${id}`,
+          {
+            content: newContent,
+            updatedAt: new Date(),
+          }
+        );
         setLastUpdated(new Date());
       }, 5000);
     },
@@ -34,7 +37,9 @@ export const NoteEditor = () => {
 
   useEffect(() => {
     const fetchNote = async () => {
-      const res = await axios.get(`http://127.0.0.1:3000/api/v1/notes/${id}`);
+      const res = await axios.get(
+        `https://scriptguru-assignment-1.onrender.com/api/v1/notes/${id}`
+      );
       if (editor) {
         editor.commands.setContent(res.data.note.content || "");
       }
@@ -77,10 +82,13 @@ export const NoteEditor = () => {
 
   const handleManualSave = async () => {
     try {
-      const res = await axios.put(`http://127.0.0.1:3000/api/v1/notes/${id}`, {
-        content: editor?.getHTML() || "",
-        updatedAt: new Date(),
-      });
+      const res = await axios.put(
+        `https://scriptguru-assignment-1.onrender.com/api/v1/notes/${id}`,
+        {
+          content: editor?.getHTML() || "",
+          updatedAt: new Date(),
+        }
+      );
       if (editor) {
         editor.commands.setContent(res.data.note.content || "");
       }
